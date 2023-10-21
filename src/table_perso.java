@@ -1,8 +1,16 @@
 import javax.swing.table.AbstractTableModel;
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class table_perso extends AbstractTableModel {
     public ArrayList<Personne> personnes;
+    List<Color> rowColours = Arrays.asList(
+            Color.RED,
+            Color.GREEN,
+            Color.CYAN
+    );
    table_perso(ArrayList<Personne> personnes){
       this.personnes=personnes;
       for(int i=0;i<personnes.size();i++){
@@ -12,6 +20,11 @@ public class table_perso extends AbstractTableModel {
       }
 
    }
+
+    public void setRowColour(int row, Color c) {
+        rowColours.set(row, c);
+        fireTableRowsUpdated(row, row);
+    }
     @Override
     public int getRowCount() {
         return personnes.size();
